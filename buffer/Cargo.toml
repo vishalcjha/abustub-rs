@@ -1,0 +1,10 @@
+[package]
+name = "buffer"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1.42.0", features = ["full"] }
+common = {path = "../common"}
+storage = {path = "../storage"}
+
