@@ -54,13 +54,13 @@ impl LruNode {
 /// +inf as its backward k-distance. When multiple frames have +inf backward k-distance,
 /// classical LRU algorithm is used to choose victim.
 pub struct LruKReplace {
-    max_frame: u32,
+    max_frame: usize,
     history_size: usize,
     nodes: Mutex<HashMap<FrameId, LruNode>>,
 }
 
 impl LruKReplace {
-    pub fn new(max_frame: u32, k_size: usize) -> Self {
+    pub fn new(max_frame: usize, k_size: usize) -> Self {
         LruKReplace {
             max_frame,
             history_size: k_size,
