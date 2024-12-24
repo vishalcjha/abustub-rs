@@ -9,12 +9,12 @@ use common::{FrameId, PAGE_SIZE};
 use tokio::sync::oneshot;
 
 use crate::buffer_pool_manager::FrameHeader;
-pub(crate) struct FrameHeaderReadGuard {
+pub struct FrameHeaderReadGuard {
     pub(crate) frame: Arc<FrameHeader>,
     pub(crate) pin_reducer: Sender<FrameGuardDropMessage>,
 }
 
-pub(crate) struct FrameHeaderWriteGuard {
+pub struct FrameHeaderWriteGuard {
     pub(crate) frame: Option<FrameHeader>,
     pub(crate) pin_reducer: Sender<FrameGuardDropMessage>,
 }

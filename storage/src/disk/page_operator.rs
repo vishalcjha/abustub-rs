@@ -1,8 +1,18 @@
 #![allow(dead_code)]
 
-use async_trait::async_trait;
+use std::io;
 
-#[async_trait]
-trait PageOperator: Send {
-    async fn increase_page_size(page_count: u32);
+use common::PAGE_SIZE;
+
+pub trait PageOperator: Send {
+    fn write_page(
+        &mut self,
+        page_id: usize,
+        data: Box<[u8; PAGE_SIZE]>,
+    ) -> io::Result<Box<[u8; PAGE_SIZE]>>;
+    fn read_page(
+        &mut self,
+        page_id: usize,
+        data: Box<[u8; PAGE_SIZE]>,
+    ) -> io::Result<Box<[u8; PAGE_SIZE]>>;
 }

@@ -5,3 +5,5 @@ edition = "2021"
 
 [workspace]
 members = [ "buffer", "common","storage"]
+# default-members allows to build packages from root level.
+default-members = [ "buffer", "common","storage"]
