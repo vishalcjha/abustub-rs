@@ -1,9 +1,6 @@
 #![allow(dead_code)]
 
-use std::{
-    io,
-    thread::{self, JoinHandle},
-};
+use std::thread::{self, JoinHandle};
 
 use common::{PageId, PAGE_SIZE};
 use tokio::sync::{
@@ -52,7 +49,7 @@ impl DiskScheduler {
         &self,
         page_id: PageId,
         data_buf: Box<[u8; PAGE_SIZE]>,
-    ) -> Receiver<io::Result<Box<[u8; PAGE_SIZE]>>> {
+    ) -> Receiver<common::Result<Box<[u8; PAGE_SIZE]>>> {
         let (request, receiver) = DiskRequest::new_read(page_id, data_buf);
         let _ = self.work_queue.send(request);
         receiver
@@ -62,7 +59,7 @@ impl DiskScheduler {
         &self,
         page_id: PageId,
         data_buf: Box<[u8; PAGE_SIZE]>,
-    ) -> Receiver<io::Result<Box<[u8; PAGE_SIZE]>>> {
+    ) -> Receiver<common::Result<Box<[u8; PAGE_SIZE]>>> {
         let (request, receiver) = DiskRequest::new_write(page_id, data_buf);
         let _ = self.work_queue.send(request);
         receiver

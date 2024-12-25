@@ -1,4 +1,5 @@
 mod disk;
+mod page;
 
 pub use disk::disk_scheduler::DiskScheduler;
 pub use disk::memory_manager::MemoryManager;

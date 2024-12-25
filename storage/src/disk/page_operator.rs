@@ -1,7 +1,5 @@
 #![allow(dead_code)]
 
-use std::io;
-
 use common::PAGE_SIZE;
 
 pub trait PageOperator: Send {
@@ -9,10 +7,11 @@ pub trait PageOperator: Send {
         &mut self,
         page_id: usize,
         data: Box<[u8; PAGE_SIZE]>,
-    ) -> io::Result<Box<[u8; PAGE_SIZE]>>;
+    ) -> common::Result<Box<[u8; PAGE_SIZE]>>;
+
     fn read_page(
         &mut self,
         page_id: usize,
         data: Box<[u8; PAGE_SIZE]>,
-    ) -> io::Result<Box<[u8; PAGE_SIZE]>>;
+    ) -> common::Result<Box<[u8; PAGE_SIZE]>>;
 }

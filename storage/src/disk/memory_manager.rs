@@ -35,7 +35,7 @@ impl PageOperator for MemoryManager {
         &mut self,
         page_id: usize,
         data: Box<[u8; PAGE_SIZE]>,
-    ) -> std::io::Result<Box<[u8; PAGE_SIZE]>> {
+    ) -> common::Result<Box<[u8; PAGE_SIZE]>> {
         self.assert_page_bound(page_id);
         let pos = page_id * PAGE_SIZE;
         self.memory.seek(SeekFrom::Start(pos as u64))?;
@@ -47,7 +47,7 @@ impl PageOperator for MemoryManager {
         &mut self,
         page_id: usize,
         mut data: Box<[u8; PAGE_SIZE]>,
-    ) -> std::io::Result<Box<[u8; PAGE_SIZE]>> {
+    ) -> common::Result<Box<[u8; PAGE_SIZE]>> {
         self.assert_page_bound(page_id);
         let pos = page_id * PAGE_SIZE;
         self.memory.seek(SeekFrom::Start(pos as u64))?;

@@ -6,7 +6,6 @@ use std::{
     path::PathBuf,
 };
 
-use async_trait::async_trait;
 use common::PAGE_SIZE;
 
 use super::page_operator::PageOperator;
@@ -26,13 +25,12 @@ impl DiskManager {
     }
 }
 
-#[async_trait]
 impl PageOperator for DiskManager {
     fn write_page(
         &mut self,
         page_id: usize,
         data: Box<[u8; PAGE_SIZE]>,
-    ) -> io::Result<Box<[u8; PAGE_SIZE]>> {
+    ) -> common::Result<Box<[u8; PAGE_SIZE]>> {
         let beginning_offset = page_id * PAGE_SIZE;
         self.db_file
             .seek(SeekFrom::Start(beginning_offset as u64))?;
@@ -46,7 +44,7 @@ impl PageOperator for DiskManager {
         &mut self,
         page_id: usize,
         mut data: Box<[u8; PAGE_SIZE]>,
-    ) -> io::Result<Box<[u8; PAGE_SIZE]>> {
+    ) -> common::Result<Box<[u8; PAGE_SIZE]>> {
         let beginning_offset = page_id * PAGE_SIZE;
         self.db_file
             .seek(SeekFrom::Start(beginning_offset as u64))?;
