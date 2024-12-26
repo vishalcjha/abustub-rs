@@ -1,7 +1,6 @@
 #![allow(dead_code)]
 use crate::PageId;
 
-#[repr(C)]
 pub struct Rid {
     page_id: PageId,
     slot_number: u32,

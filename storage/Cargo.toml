@@ -5,4 +5,5 @@ edition = "2021"
 
 [dependencies]
 common = {path = "../common"}
+serde = { version = "1.0.216", features = ["serde_derive"] }
 tokio = { version = "1.42.0", features = ["sync"] }

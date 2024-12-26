@@ -1,3 +1,3 @@
 #![allow(dead_code)]
 
-enum InternalNode {}
+pub struct Field {}
